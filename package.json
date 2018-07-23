@@ -1,0 +1,34 @@
+{
+  "name": "jokebot",
+  "version": "0.0.1",
+  "description": "bots bots bots",
+  "private": true,
+  "license": "unlicensed",
+  "repository": "https://github.com/PerStirpes/jokebot",
+  "scripts": {
+    "start": "nodemon server.js",
+    "inspect": "node --inspect node_modules/.bin/",
+    "test": "standard",
+    "fix": "standard --fix"
+  },
+  "lint-staged": {
+    "linters": {
+      "*.js": ["prettier-standard", "git add"]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test"
+    }
+  },
+  "dependencies": {
+    "node-fetch": "^2.1.2",
+    "nodemon": "^1.18.3"
+  },
+  "devDependencies": {
+    "husky": "^1.0.0-rc.13",
+    "lint-staged": "^7.2.0",
+    "prettier-standard": "^8.0.1"
+  }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> ⚗️ lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/preflight.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/modern-normalize@0.5.0/modern-normalize.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/utilities.min.css" rel="stylesheet">
+
+  <!-- <script src="main.js"></script> -->
+
+
+  <script>
+    !function () {
+      var analytics = window.analytics = window.analytics || []; if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
+        analytics.invoked = !0; analytics.methods = [ "trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on" ]; analytics.factory = function (t) { return function () { var e = Array.prototype.slice.call(arguments); e.unshift(t); analytics.push(e); return analytics } }; for (var t = 0; t < analytics.methods.length; t++) { var e = analytics.methods[ t ]; analytics[ e ] = analytics.factory(e) } analytics.load = function (t, e) { var n = document.createElement("script"); n.type = "text/javascript"; n.async = !0; n.src = "https://cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js"; var a = document.getElementsByTagName("script")[ 0 ]; a.parentNode.insertBefore(n, a); analytics._loadOptions = e }; analytics.SNIPPET_VERSION = "4.1.0";
+        analytics.load("bvcFHB12YaeJTv7fZzQf9HRYDl5ByVjs");
+        analytics.page();
+      }
+    }();
+  </script>
+</head>
+
+<body>
+  <h1>Hi</h1>
+
+  <p>
+    We love our customers, please feel free to
+    <a class="drift-open-chat" href="http://docs.drift.com/">chat with us</a>.
+  </p>
+  <div>
+    <button type="button" id="open-chat">Chat now!</button>
+  </div>
+  <br>
+  <div>
+    <button type="button" id="schedule-meeting-button">
+      Schedule an interview with me
+    </button>
+  </div>
+  <br>
+  <div>
+    <button type="button" id="new-conversation-button">
+      Start new conversation
+    </button>
+  </div>
+  <br>
+  <div>
+    <button type="button" id="conversation-list-button">Go to conversation list</button>
+  </div>
+  <button href="#drift-open-chat" id="drift-open-chat">Get Random Joke</button>
+</body>
+<script>
+  (() => {
+    const $ = document.body
+    const driftUserId = 1177958
+
+    const chatButton = $
+      .querySelector('#open-chat')
+      .addEventListener('click', () => {
+        drift.on('ready', api => api.sidebar.toggle())
+      })
+
+    const scheduleButton = $
+      .querySelector('#schedule-meeting-button')
+      .addEventListener('click', () => {
+        drift.on('ready', api => api.scheduleMeeting(driftUserId))
+      })
+
+    const newConversationButton = $
+      .querySelector('#new-conversation-button')
+      .addEventListener('click', () => {
+        drift.on('ready', api => api.goToNewConversation())
+      })
+
+    const conversationListButton = $
+      .querySelector('#conversation-list-button')
+      .addEventListener('click', () => {
+        drift.on('ready', api => api.goToConversationList())
+      })
+
+    const jokeButton = $.querySelector('#drift-open-chat')
+      .addEventListener('click', () => {
+        location = '#drift-open-chat'
+      })
+  })()
+
+</script>
+
+</html>
