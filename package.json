@@ -7,13 +7,16 @@
   "repository": "https://github.com/PerStirpes/jokebot",
   "scripts": {
     "start": "nodemon server.js",
-    "inspect": "node --inspect node_modules/.bin/",
+    "inspect": "node --inspect server.js",
     "test": "standard",
     "fix": "standard --fix"
   },
   "lint-staged": {
     "linters": {
-      "*.js": ["prettier-standard", "git add"]
+      "*.js": [
+        "prettier-standard",
+        "git add"
+      ]
     }
   },
   "husky": {
@@ -23,6 +26,11 @@
     }
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "1.18.2",
+    "dotenv": "^6.0.0",
+    "express": "4.16.2",
+    "morgan": "^1.9.0",
     "node-fetch": "^2.1.2",
     "nodemon": "^1.18.3"
   },
