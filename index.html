@@ -4,14 +4,12 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> ⚗️ lab</title>
+  <title>🃏 Joke Bot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/preflight.min.css" rel="stylesheet">
   <link href="https://unpkg.com/modern-normalize@0.5.0/modern-normalize.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/utilities.min.css" rel="stylesheet">
-
-  <!-- <script src="main.js"></script> -->
-
+  <link rel="shortcut icon" href="static/favicon.ico">
 
   <script>
     !function () {
@@ -25,32 +23,71 @@
 </head>
 
 <body>
-  <h1>Hi</h1>
+  <nav class="flex items-center justify-between flex-wrap bg-black p-6">
+    <div class="flex items-center flex-no-shrink text-white mr-6">
 
-  <p>
-    We love our customers, please feel free to
-    <a class="drift-open-chat" href="http://docs.drift.com/">chat with us</a>.
-  </p>
+
+      <span class="font-semibold text-xl tracking-tight">Joke Bot</span>
+    </div>
+    <div class="block lg:hidden">
+      <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
+        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <title>Menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+        </svg>
+      </button>
+    </div>
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div class="text-sm lg:flex-grow">
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+          Tutorial
+        </a>
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+          UNDEFINED 🤣
+        </a>
+        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white">
+          Amazing Experiences
+        </a>
+      </div>
+      <div>
+        <button class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0"
+          id="schedule-meeting-button">Schedule an interview with me</button>
+      </div>
+    </div>
+  </nav>
   <div>
-    <button type="button" id="open-chat">Chat now!</button>
+    <h1>🃏 🃏</h1>
+
+    <p>
+      TODO: Change copy ; We love our customers, please feel free to
+      <img src="static/black.png" alt="drift" />
+
+    </p>
   </div>
-  <br>
-  <div>
-    <button type="button" id="schedule-meeting-button">
-      Schedule an interview with me
-    </button>
+  <div class="flex flex-col content-center items-center justify-center">
+    <div>
+      <button type="button" class="flex-1  ml-4 shadow-lg bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded"
+        id="open-chat">Chat now!</button>
+    </div>
+    <br>
+    <div>
+      <button type="button" class="flex-1 ml-4 shadow-lg bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded"
+        id="new-conversation-button">
+        Start new conversation
+      </button>
+    </div>
+    <br>
+    <div>
+      <button type="button" class="flex-1 ml-4 shadow-lg bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded"
+        id="conversation-list-button">Go to conversation list</button>
+    </div>
+    <br>
+    <div>
+      <button class="flex-1 ml-4 shadow-lg bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded"
+        href="#drift-open-chat" id="drift-open-chat">Get Random Joke</button>
+    </div>
   </div>
-  <br>
-  <div>
-    <button type="button" id="new-conversation-button">
-      Start new conversation
-    </button>
-  </div>
-  <br>
-  <div>
-    <button type="button" id="conversation-list-button">Go to conversation list</button>
-  </div>
-  <button href="#drift-open-chat" id="drift-open-chat">Get Random Joke</button>
+</body>
 </body>
 <script>
   (() => {
@@ -78,9 +115,22 @@
     const conversationListButton = $
       .querySelector('#conversation-list-button')
       .addEventListener('click', () => {
-        drift.on('ready', api => api.goToConversationList())
+        drift.on('ready', api => {
+          api.goToConversationList()
+        })
       })
 
+    // A LITTLE EXPERIMENTING   
+    // const jokeButton = $.querySelector('#drift-open-chat')
+    //   .addEventListener('click', () => {
+    //     location = '#drift-open-chat'
+    //     drift.on('ready', (api, payload) => {
+    //       api.goToNewConversation()
+    //       window.drift.on("startConversation", function (data) {
+    //         console.log("User started a new conversation " + data.conversationId);
+    //       });
+    //     })
+    //   })
     const jokeButton = $.querySelector('#drift-open-chat')
       .addEventListener('click', () => {
         location = '#drift-open-chat'
