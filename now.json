@@ -1,0 +1,18 @@
+{
+  "name": "go-gadget-go",
+  "alias": "gogadgetgo.now.sh",
+  "env": {
+    "NODE_ENV": "production",
+    "DRIFT_ACCESS_TOKEN": "@DRIFT_ACCESS_TOKEN",
+    "DRIFT_CONVO_API": "@DRIFT_CONVO_API",
+    "DRIFT_VERIFICATION_TOKEN": "@DRIFT_VERIFICATION_TOKEN",
+    "JOKES_API": "@my-app-my-api-token",
+    "SENTRY_API": "@my-app-mongo-url"
+  },
+  "scale": {
+    "sfo1": {
+      "min": 1,
+      "max": "5"
+    }
+  }
+}
