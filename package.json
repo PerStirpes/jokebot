@@ -3,13 +3,12 @@
   "version": "0.0.2",
   "description": "bots bots bots",
   "author": "MBC",
-  "license": "UNLICENSED",
+  "license": "unlicensed",
   "repository": "https://github.com/PerStirpes/jokebot",
   "scripts": {
     "start": "nodemon server.js",
     "start:env": "nodemon -r dotenv/config server.js",
     "debug": "DEBUG=* node -r dotenv/config server.js",
-    "debug:calls": "NODE_DEBUG=request node server.js",
     "inspect": "node --inspect server.js",
     "test": "standard",
     "fix": "standard --fix"
@@ -31,10 +30,7 @@
     "dotenv": "^6.0.0",
     "express": "4.16.2",
     "node-fetch": "^2.1.2",
-    "nodemon": "^1.18.3",
-    "raven": "^2.6.3",
-    "request": "^2.87.0",
-    "request-promise": "^4.2.2"
+    "nodemon": "^1.18.3"
   },
   "devDependencies": {
     "husky": "^1.0.0-rc.13",
