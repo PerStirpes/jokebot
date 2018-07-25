@@ -1,12 +1,13 @@
 {
-  "name": "jokebot",
+  "name": "go-gadget-go",
   "version": "0.0.2",
   "description": "bots bots bots",
   "author": "MBC",
   "license": "UNLICENSED",
   "repository": "https://github.com/PerStirpes/jokebot",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "start:nodemon": "nodemon server.js",
     "start:env": "nodemon -r dotenv/config server.js",
     "debug": "DEBUG=* node -r dotenv/config server.js",
     "debug:calls": "NODE_DEBUG=request node server.js",
@@ -16,10 +17,7 @@
   },
   "lint-staged": {
     "linters": {
-      "*.js": [
-        "prettier-standard",
-        "git add"
-      ]
+      "*.js": ["prettier-standard", "git add"]
     }
   },
   "husky": {

@@ -50,6 +50,9 @@ app.post('/joke', ({ body }, response) => {
   return response.send('ok')
 })
 
-server.listen((PORT = 3000), () => {
+const PORT = parseInt(process.env.PORT, 10) || 80
+const dev = process.env.NODE_ENV !== 'production'
+server.listen(PORT, err => {
+  if (err) throw err
   console.log(`> We're live on http://localhost:${PORT}`)
 })
