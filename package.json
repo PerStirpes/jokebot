@@ -1,9 +1,9 @@
 {
   "name": "go-gadget-go",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "bots bots bots",
   "author": "MBC",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": "https://github.com/PerStirpes/jokebot",
   "scripts": {
     "start": "node server.js",
