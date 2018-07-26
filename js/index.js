@@ -2,13 +2,6 @@
   const $ = document.body
   const driftUserId = 1177958
 
-  const chatButton = $.querySelector('#open-chat').addEventListener(
-    'click',
-    () => {
-      drift.on('ready', api => api.sidebar.toggle())
-    }
-  )
-
   const scheduleButton = $.querySelector(
     '#schedule-meeting-button'
   ).addEventListener('click', () => {
@@ -40,6 +33,14 @@
   //       });
   //     })
   //   })
+
+  const chatButton = $.querySelector('#open-chat').addEventListener(
+    'click',
+    () => {
+      drift.on('ready', api => api.sidebar.toggle())
+    }
+  )
+
   const jokeButton = $.querySelector('#drift-open-chat').addEventListener(
     'click',
     () => {
