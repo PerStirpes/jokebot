@@ -31,19 +31,15 @@ app.get('/joke', (_, response) => {
 app.post('/joke', ({ body }, response) => {
   const { token, type, orgId, data } = body
   debug('body', body)
+
   // Verifying tokens 👇,
   if (token === DRIFT_VERIFICATION_TOKEN) {
-    if (
-      type === 'new_message' &&
-      data.body === '<p>Okay, getting a joke asap!</p>'
-    ) {
-      handleMessage(data, orgId)
-    }
+    const kickoff = '<p>Okay, getting a joke asap!</p>'
+    if (type === 'new_message' && data.body === kickoff) { handleMessage(data, orgId) }
   } else {
-    debug('DRIFT_VERIFICATION_TOKEN mismatch')
+    console.warn('DRIFT_VERIFICATION_TOKEN mismatch')
     response.sendStatus(403)
   }
-
   return response.send('ok')
 })
 
