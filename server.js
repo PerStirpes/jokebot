@@ -30,7 +30,7 @@ app.get('/joke', (_, response) => {
 
 app.post('/joke', ({ body }, response) => {
   const { token, type, orgId, data } = body
-
+  debug('body', body)
   // Verifying tokens 👇,
   if (token === DRIFT_VERIFICATION_TOKEN) {
     if (
