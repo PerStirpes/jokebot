@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>🃏 Joke Bot</title>
+  <title>Jokers Are Wild 🃏</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/preflight.min.css" rel="stylesheet">
   <link href="https://unpkg.com/modern-normalize@0.5.0/modern-normalize.css" rel="stylesheet">
@@ -83,56 +83,6 @@
     <img src="static/black.png" alt="drift" />
   </div>
 </body>
-</body>
-<script>
-  (() => {
-    const $ = document.body
-    const driftUserId = 1177958
-
-    const chatButton = $
-      .querySelector('#open-chat')
-      .addEventListener('click', () => {
-        drift.on('ready', api => api.sidebar.toggle())
-      })
-
-    const scheduleButton = $
-      .querySelector('#schedule-meeting-button')
-      .addEventListener('click', () => {
-        drift.on('ready', api => api.scheduleMeeting(driftUserId))
-      })
-
-    const newConversationButton = $
-      .querySelector('#new-conversation-button')
-      .addEventListener('click', () => {
-        drift.on('ready', api => api.goToNewConversation())
-      })
-
-    const conversationListButton = $
-      .querySelector('#conversation-list-button')
-      .addEventListener('click', () => {
-        drift.on('ready', api => {
-          api.goToConversationList()
-        })
-      })
-
-
-    // A LITTLE EXPERIMENTING   
-    // const jokeButton = $.querySelector('#drift-open-chat')
-    //   .addEventListener('click', () => {
-    //     location = '#drift-open-chat'
-    //     drift.on('ready', (api, payload) => {
-    //       api.goToNewConversation()
-    //       window.drift.on("startConversation", function (data) {
-    //         console.log("User started a new conversation " + data.conversationId);
-    //       });
-    //     })
-    //   })
-    const jokeButton = $.querySelector('#drift-open-chat')
-      .addEventListener('click', () => {
-        location = '#drift-open-chat'
-      })
-  })()
-
-</script>
+<script src="/js/index.js"></script>
 
 </html>
