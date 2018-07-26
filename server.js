@@ -9,15 +9,12 @@ const bodyParser = require('body-parser')
 const { DRIFT_VERIFICATION_TOKEN, SENTRY_API } = process.env
 const { handleMessage } = require('./lib/incoming')
 
-// debugging tools lines 10 - 22 - ugh
+// debugging tools lines 12 - 21 - ugh
 const debug = require('debug')('joke-bot:server')
 const Raven = require('raven')
 Raven.config(SENTRY_API).install()
 app.use(Raven.requestHandler())
 app.use(Raven.errorHandler())
-app.get('/', () => {
-  throw new Error('Broke!')
-})
 app.use(function onError (err, req, res, next) {
   console.error(err.message)
   res.status(500).end(`${res.sentry} ${err.message}` + '\n')
@@ -38,7 +35,7 @@ app.post('/joke', ({ body }, response) => {
   if (token === DRIFT_VERIFICATION_TOKEN) {
     if (
       type === 'new_message' &&
-      data.body !== '<p>Okay, getting a joke asap!</p>'
+      data.body === '<p>Okay, getting a joke asap!</p>'
     ) {
       handleMessage(data, orgId)
     }
@@ -51,7 +48,7 @@ app.post('/joke', ({ body }, response) => {
 })
 
 const PORT = parseInt(process.env.PORT, 10) || 80
-const dev = process.env.NODE_ENV !== 'production'
+
 server.listen(PORT, err => {
   if (err) throw err
   console.log(`> We're live on http://localhost:${PORT}`)
