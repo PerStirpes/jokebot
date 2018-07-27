@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+const { createServer } = require('http')
+const PORT = parseInt(process.env.PORT, 10) || 80
+
+server.listen(PORT, err => {
+  if (err) throw err
+  console.log(`> We're live on http://localhost:${PORT}`)
+})
