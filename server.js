@@ -1,18 +1,15 @@
-require('dotenv').config()
-const { createServer } = require('http')
-
 const express = require('express')
 const app = express()
-const server = createServer(app)
 const bodyParser = require('body-parser')
-
-const { DRIFT_VERIFICATION_TOKEN, SENTRY_API } = process.env
+const debug = require('debug')
+const { DRIFT_VERIFICATION_TOKEN } = process.env
 const { handleMessage } = require('./lib/incoming')
-
-// debugging tools lines 12 - 21 - ugh
-const debug = require('debug')('joke-bot:server')
+const DRIFT_VERIFICATION_TOKEN = '5yVhM7ULJRL1r2EoCS1DBYSJBktLuM1C'
+// debugging tools lines 10 - 18
 const Raven = require('raven')
-Raven.config(SENTRY_API).install()
+Raven.config(
+  'https://ef897a7e139c44b6a597c6b6a65147bc@sentry.io/1249642'
+).install()
 app.use(Raven.requestHandler())
 app.use(Raven.errorHandler())
 app.use(function onError (err, req, res, next) {
@@ -21,31 +18,39 @@ app.use(function onError (err, req, res, next) {
 })
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/joke', (_, response) => {
+app.get('/joke', authorize, (_, response) => {
   response.send(`<style>body {display: flex;justify-content: center;
     align-items: center;} span {font-size: 45px;font-family: Arial;}</style>
     <span>🧚‍ We Are Live!, keep calm and code on 🧚</span>`)
 })
 
-app.post('/joke', ({ body }, response) => {
-  const { token, type, orgId, data } = body
-  debug('body', body)
+app.post('/joke', authorize, joker)
 
-  // Verifying tokens 👇,
-  if (token === DRIFT_VERIFICATION_TOKEN) {
+function authorize ({ body }, res, next) {
+  if (DRIFT_VERIFICATION_TOKEN !== body.token) {
+    return res.status(401).send('Not authorized')
+  }
+  return next()
+}
+
+function joker ({ body }, response) {
+  const { type, orgId, data } = body
+  debug('body %O', body)
+
+  if (type === 'new_message') {
     const kickoff = '<p>Okay, getting a joke asap!</p>'
-    if (type === 'new_message' && data.body === kickoff) { handleMessage(data, orgId) }
-  } else {
-    console.warn('DRIFT_VERIFICATION_TOKEN mismatch')
-    response.sendStatus(403)
+    if (data.body === kickoff) {
+      handleMessage(data, orgId)
+    }
+    // handle search text
+    // if (data.body.includes('/joke ')) {
+    //   debug('data.body', data.body)
+    //   // handleMessage(data, orgId)
+    // }
   }
   return response.send('ok')
-})
+}
 
-const PORT = parseInt(process.env.PORT, 10) || 80
-
-server.listen(PORT, err => {
-  if (err) throw err
-  console.log(`> We're live on http://localhost:${PORT}`)
-})
+module.exports = app
