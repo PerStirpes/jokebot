@@ -20,11 +20,7 @@ app.use(function onError (err, req, res, next) {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/joke', authorize, (_, response) => {
-  response.send(`<style>body {display: flex;justify-content: center;
-    align-items: center;} span {font-size: 45px;font-family: Arial;}</style>
-    <span>🧚‍ We Are Live!, keep calm and code on 🧚</span>`)
-})
+app.get('/joke', authorize, status)
 
 app.post('/joke', authorize, joker)
 
@@ -33,6 +29,12 @@ function authorize ({ body }, res, next) {
     return res.status(401).send('Not authorized')
   }
   return next()
+}
+
+function status (_, response) {
+  response.send(`<style>body {display: flex;justify-content: center;
+    align-items: center;} span {font-size: 45px;font-family: Arial;}</style>
+    <span>🧚‍ We Are Live!, keep calm and code on 🧚</span>`)
 }
 
 function joker ({ body }, response) {

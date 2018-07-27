@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
-
 //Module dependencies.
 const { createServer } = require('http')
 const debug = require('debug')('Bin-server')
-const app = require('../server')
+const app = require('../app')
 
 //Get port from environment and store in Express.
 
@@ -20,4 +19,3 @@ server.listen(app.get('port'), () => {
   }
   debug(`> We're live on port ${server.address().port}`)
 })
-¡
