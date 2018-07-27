@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const debug = require('debug')
 const { DRIFT_VERIFICATION_TOKEN } = process.env
 const { handleMessage } = require('./lib/incoming')
-const DRIFT_VERIFICATION_TOKEN = '5yVhM7ULJRL1r2EoCS1DBYSJBktLuM1C'
 // debugging tools lines 10 - 18
 const Raven = require('raven')
 Raven.config(
