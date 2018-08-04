@@ -34,12 +34,11 @@
   //     })
   //   })
 
-  const chatButton = $.querySelector('#open-chat').addEventListener(
-    'click',
-    () => {
+  const chatButton = document
+    .querySelector('#open-chat')
+    .addEventListener('click', () => {
       drift.on('ready', api => api.sidebar.toggle())
-    }
-  )
+    })
 
   const jokeButton = $.querySelector('#drift-open-chat').addEventListener(
     'click',
